@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профессиональный колледж КНУ им. Ж. Баласагына</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* БАЗОВЫЕ СТИЛИ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f4f6f9; color: #333; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ШАПКА */
+        .top-header { background-color: #fff; padding: 15px 0; border-bottom: 4px solid #003366; }
+        .logo-box { display: flex; align-items: center; }
+        .logo-box img { height: 80px; margin-right: 20px; }
+        .university-name { color: #003366; font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* НАВИГАЦИЯ */
+        .nav-menu { background-color: #003366; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .nav-menu ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; }
+        .nav-menu ul li a { display: block; color: #fff; padding: 15px 20px; text-decoration: none; font-weight: 500; cursor: pointer; transition: 0.3s; }
+        .nav-menu ul li a:hover { background-color: #f39c12; color: #003366; }
+
+        /* КОНТЕНТ */
+        .main-content { padding: 40px 0; min-height: 75vh; }
+        .section-title { font-size: 1.8rem; color: #003366; margin-bottom: 25px; border-left: 6px solid #f39c12; padding-left: 15px; margin-top: 40px; }
+
+        /* КАРТОЧКИ ОТДЕЛЕНИЙ */
+        .faculty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .faculty-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; transition: 0.3s; }
+        .faculty-card:hover { transform: translateY(-5px); }
+        .card-logo-display { width: 100%; height: 180px; background: #fff; display: flex; justify-content: center; align-items: center; padding: 15px; border-bottom: 1px solid #eee; }
+        .card-logo-display img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .card-body { padding: 20px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .btn-main { display: block; width: 100%; padding: 12px; background: #003366; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; margin-top: 15px; text-transform: uppercase; font-size: 0.9rem; }
+        .btn-main:hover { background: #00509d; }
+
+        /* СЕТКА КНОПОК СПЕЦИАЛЬНОСТЕЙ */
+        .button-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
+        .spec-btn { background: #fff; border: 2px solid #003366; color: #003366; padding: 18px; border-radius: 6px; cursor: pointer; font-weight: 700; transition: 0.3s; text-align: left; }
+        .spec-btn:hover { background: #003366; color: #fff; }
+
+        /* ГАЛЕРЕЯ */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .gallery-item { height: 200px; border-radius: 8px; overflow: hidden; background: #ddd; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-item img:hover { transform: scale(1.1); }
+
+        /* FAQ */
+        .faq-item { background: #fff; margin-bottom: 10px; border-radius: 5px; overflow: hidden; border: 1px solid #ddd; }
+        .faq-question { padding: 15px; background: #f8f9fa; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; align-items: center; color: #003366; }
+        .faq-answer { padding: 15px; display: none; background: #fff; border-top: 1px solid #eee; }
+
+        /* КОНТАКТЫ */
+        .contact-flex { display: flex; flex-wrap: wrap; gap: 30px; }
+        .contact-info, .contact-form { flex: 1; min-width: 300px; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
+        .btn-send { background: #f39c12; color: #fff; border: none; padding: 12px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
+        .btn-send:hover { background: #e67e22; }
+
+        .social-box { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .social-btn { padding: 10px 20px; border-radius: 4px; text-decoration: none; color: white; font-size: 0.9rem; font-weight: bold; transition: 0.3s; }
+        .social-btn:hover { opacity: 0.8; }
+        .insta { background: #E1306C; }
+        .fb { background: #1877F2; }
+        .tt { background: #000000; }
+
+        /* ТАБЛИЦА */
+        .staff-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; }
+        .staff-table th { background: #003366; color: #fff; text-align: left; padding: 15px; }
+        .staff-table td { padding: 15px; border-bottom: 1px solid #eee; }
+        .staff-table tr:last-child td { border-bottom: none; }
+
+        /* АНИМАЦИИ И ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ */
+        .hidden { display: none; }
+        .fade-in { animation: fadeIn 0.4s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .back-link { color: #003366; font-weight: bold; cursor: pointer; display: inline-block; margin-bottom: 20px; background: #e9ecef; padding: 8px 20px; border-radius: 4px; transition: 0.3s; }
+        .back-link:hover { background: #dee2e6; }
+        footer { background: #1a1a1a; color: #bbb; padding: 40px 0; text-align: center; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+        <div class="container">
+            <div class="logo-box">
+                <img src="https://upload.wikimedia.org/wikipedia/ru/6/62/%D0%9A%D1%8B%D1%80%D0%B3%D1%8B%D0%B7%D1%81%D0%BA%D0%B8%D0%B9_%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82_%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8_%D0%96%D1%83%D1%81%D1%83%D0%BF%D0%B0_%D0%91%D0%B0%D0%BB%D0%B0%D1%81%D0%B0%D0%B3%D1%8B%D0%BD%D0%B0.jpg" alt="Лого КНУ">
+                <div class="university-name">Профессиональный колледж КНУ им. Жусупа Баласагына</div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-menu">
+        <div class="container">
+            <ul>
+                <li><a onclick="showStep(1)">Главная</a></li>
+                <li><a onclick="showStep(1); window.scrollTo(0, document.body.scrollHeight/3);">Отделения</a></li>
+                <li><a onclick="showStep(1); window.scrollTo(0, 1000);">Жизнь колледжа</a></li>
+                <li><a onclick="showStep(4)">Руководство</a></li>
+                <li><a onclick="showStep(5)">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        
+        <div id="step-1" class="fade-in">
+            <h2 class="section-title">Наши отделения</h2>
+            <div class="faculty-grid">
+                <div class="faculty-card">
+                    <div class="card-logo-display">
+                        <img src="https://avatars.mds.yandex.net/i?id=d03be61a76a5abaacfb6964e468f0954_l-12912265-images-thumbs&n=13" alt="ИТ">
+                    </div>
+                    <div class="card-body">
+                        <h3>Информационные технологии</h3>
+                        <button class="btn-main" onclick="showStep(2)">Выбрать направление →</button>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="card-logo-display">
+                        <img src="https://avatars.mds.yandex.net/i?id=8229bd0fc8d92229980d893a375f7f7c_sr-5293164-images-thumbs&n=13" alt="Экономика">
+                    </div>
+                    <div class="card-body">
+                        <h3>Экономика и финансы</h3>
+                        <button class="btn-main" onclick="showStep(6)">Выбрать направление →</button>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="card-logo-display">
+                        <img src="https://cdn.culture.ru/images/adc164c4-a685-5f58-ad2d-20bae18ee097" alt="Междисциплинарный">
+                    </div>
+                    <div class="card-body">
+                        <h3>Междисциплинарные специальности</h3>
+                        <button class="btn-main" onclick="showStep(7)">Выбрать направление →</button>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="card-logo-display">
+                        <img src="https://avatars.mds.yandex.net/i?id=f920416f72959278bb9538477312f9ee36d0bedd-5334041-images-thumbs&n=13" alt="Перевод">
+                    </div>
+                    <div class="card-body">
+                        <h3>Переводческая работа</h3>
+                        <button class="btn-main" onclick="showStep(8)">Выбрать направление →</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Жизнь в колледже</h2>
+            <div class="gallery-grid">
+    <div class="gallery-item"><img src="https://avatars.mds.yandex.net/get-altay/14920824/2a00000195a2c8c4380ad9c8ccfe84c2e749/L_height" alt="Университет"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=600&q=80" alt="Студенты"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=600&q=80" alt="Лаборатория"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80" alt="Лекция"></div>
+</div>
+
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <div id="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(0)">Какие документы нужны для поступления? <span>▼</span></div>
+                    <div class="faq-answer">Аттестат (оригинал), паспорт или свидетельство о рождении, 6 фотографий (размером 3x4) и медицинская справка формы 086-У.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(1)">Есть ли бюджетные места? <span>▼</span></div>
+                    <div class="faq-answer">Да, в колледже предусмотрены как бюджетные места, так и обучение на контрактной основе. Количество мест зависит от выбранного направления.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(2)">Можно ли поступить после 9 класса? <span>▼</span></div>
+                    <div class="faq-answer">Да, мы принимаем абитуриентов как на базе 9, так и на базе 11 классов.</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="step-2" class="hidden fade-in">
+            <a class="back-link" onclick="showStep(1)">← К отделениям</a>
+            <h2 class="section-title">Направления ИТ (ОИТПК)</h2>
+            <div class="button-grid">
+                <button class="spec-btn" onclick="showDetail('Прикладная информатика', 'Разработка и внедрение современных ИТ-решений для бизнеса и госсектора. Стек: Python, Java, SQL.', 2)">Прикладная информатика (ПИ)</button>
+                <button class="spec-btn" onclick="showDetail('Информационная безопасность', 'Защита конфиденциальных данных, предотвращение кибератак и аудит систем безопасности.', 2)">ИБАС</button>
+                <button class="spec-btn" onclick="showDetail('АСОиУ', 'Автоматизация управления производственными и информационными процессами.', 2)">АСОиУ</button>
+                <button class="spec-btn" onclick="showDetail('ПОВТиАС', 'Создание программного обеспечения любой сложности — от мобильных приложений до серверных систем.', 2)">ПОВТиАС</button>
+                <button class="spec-btn" onclick="showDetail('ТРиУК', 'Тестирование программного обеспечения (QA) и контроль качества на всех этапах разработки.', 2)">ТРиУК</button>
+            </div>
+        </div>
+
+        <div id="step-6" class="hidden fade-in">
+            <a class="back-link" onclick="showStep(1)">← К отделениям</a>
+            <h2 class="section-title">Экономика и финансы</h2>
+            <div class="button-grid">
+                <button class="spec-btn" onclick="showDetail('Бухучет и аудит', 'Профессиональный финансовый учет, составление отчетности и проведение аудиторских проверок.', 6)">Экономика и бухгалтерский учет</button>
+                <button class="spec-btn" onclick="showDetail('Финансы', 'Управление капиталом организации, финансовый анализ и планирование.', 6)">Финансы (по секторам)</button>
+                <button class="spec-btn" onclick="showDetail('Банковское дело', 'Операционное обслуживание клиентов, кредитование и работа с ценными бумагами.', 6)">Банковское дело</button>
+                <button class="spec-btn" onclick="showDetail('Налогообложение', 'Налоговый консультант и специалист по налоговому праву.', 6)">Налогообложение</button>
+            </div>
+        </div>
+
+        <div id="step-7" class="hidden fade-in">
+            <a class="back-link" onclick="showStep(1)">← К отделениям</a>
+            <h2 class="section-title">Междисциплинарные специальности</h2>
+            <div class="button-grid">
+                <button class="spec-btn" onclick="showDetail('Психология', 'Основы психологического консультирования и работа с персоналом.', 7)">Психология</button>
+                <button class="spec-btn" onclick="showDetail('Социальная работа', 'Поддержка и социальное обеспечение граждан.', 7)">Социальная работа</button>
+                <button class="spec-btn" onclick="showDetail('Туризм', 'Организация туристических услуг и гостиничный сервис.', 7)">Туризм</button>
+                <button class="spec-btn" onclick="showDetail('Правоведение', 'Юридическая помощь, работа в органах юстиции и адвокатуре.', 7)">Правоведение</button>
+            </div>
+        </div>
+
+        <div id="step-8" class="hidden fade-in">
+            <a class="back-link" onclick="showStep(1)">← К отделениям</a>
+            <h2 class="section-title">Отделение переводческой работы</h2>
+            <div class="button-grid">
+                <button class="spec-btn" onclick="showDetail('Переводческое дело', 'Устный и письменный перевод, работа с технической и художественной литературой.', 8)">Перевод</button>
+                <button class="spec-btn" onclick="showDetail('Иностранные языки', 'Лингвистическая подготовка для работы в международных компаниях.', 8)">Иностранные языки</button>
+            </div>
+        </div>
+
+        <div id="step-3" class="hidden fade-in">
+            <a class="back-link" id="dynamic-back">← Назад</a>
+            <div class="info-panel" style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                <h2 id="spec-name" style="color:#003366; border-bottom: 2px solid #f39c12; padding-bottom: 10px;"></h2>
+                <div id="spec-info" style="margin-top: 20px; font-size: 1.2rem; color: #555;"></div>
+                <button class="btn-main" style="max-width: 250px; margin-top: 30px;" onclick="showStep(5)">Оставить заявку на поступление</button>
+            </div>
+        </div>
+
+        <div id="step-4" class="hidden fade-in">
+            <h2 class="section-title">Администрация колледжа</h2>
+            <table class="staff-table">
+                <thead>
+                    <tr><th>ФИО</th><th>Должность</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Саадабек уулу Бектен</strong></td><td>Директор колледжа</td></tr>
+                    <tr><td><strong>Калдиева Асель Николаевна</strong></td><td>Зам. директора по учебной работе</td></tr>
+                    <tr><td><strong>Каныбекова Айша Эрнсовна</strong></td><td>Зам. директора по методической работе</td></tr>
+                    <tr><td><strong>Болотбеков Чынгыз</strong></td><td>Зам. директора по воспитательной работе</td></tr>
+                    <tr><td><strong>Марат кызы Гулзат</strong></td><td>Зам. директора по науке</td></tr>
+                    <tr><td><strong>Мамбеталиев Мирбек</strong></td><td>Зав. ИТ отделением</td></tr>
+                    <tr><td><strong>Токтоматова Жумабу</strong></td><td>Зав. отделением экономики</td></tr>
+                    <tr><td><strong>Имналиева Мунара</strong></td><td>Зав. переводческим отделением</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="step-5" class="hidden fade-in">
+            <h2 class="section-title">Контакты и адрес</h2>
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <h3>Приемная комиссия</h3>
+                    <p style="margin-top: 15px;">📍 <strong>Адрес:</strong> г. Бишкек, ул. Калык Акиева 85, корпус КНУ 6а</p>
+                    <p>📞 <strong>Телефоны:</strong><br>+996(312) 65-45-42<br>+996(312) 65-77-15</p>
+                    <p>📧 <strong>E-mail:</strong> info@knu-college.kg</p>
+                    
+                    <div class="social-box">
+                        <a href="https://www.instagram.com/profcollege.knu" target="_blank" class="social-btn insta">Instagram</a>
+                        <a href="https://m.facebook.com/61581254585020/" target="_blank" class="social-btn fb">Facebook</a>
+                        <a href="https://www.tiktok.com/@profcollege_knu" target="_blank" class="social-btn tt">TikTok</a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Свяжитесь с нами</h3>
+                    <form onsubmit="alert('Ваше сообщение отправлено! Мы свяжемся с вами в ближайшее время.'); return false;">
+                        <div class="form-group"><label>Ваше ФИО</label><input type="text" placeholder="Иванов Иван" required></div>
+                        <div class="form-group"><label>Номер телефона</label><input type="tel" placeholder="+996 --- -- -- --" required></div>
+                        <div class="form-group"><label>Вопрос или специальность</label><textarea rows="4" placeholder="Напишите ваше сообщение..."></textarea></div>
+                        <button type="submit" class="btn-send">ОТПРАВИТЬ ЗАЯВКУ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Профессиональный колледж КНУ им. Ж. Баласагына</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: #777;">Не официальный сайт</p>
+        </div>
+    </footer>
+
+    <script>
+        // Навигация
+        function showStep(s) {
+            document.querySelectorAll('.main-content > div').forEach(div => div.classList.add('hidden'));
+            document.getElementById('step-' + s).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        // Детали специальностей
+        function showDetail(title, text, backStep) {
+            document.getElementById('spec-name').innerText = title;
+            document.getElementById('spec-info').innerHTML = `<p>${text}</p><br><b>Срок обучения:</b> 2 года 10 месяцев (на базе 9 класса) / 1 год 10 месяцев (на базе 11 класса).`;
+            
+            document.getElementById('dynamic-back').onclick = function() { 
+                showStep(backStep); 
+            };
+            
+            showStep(3);
+        }
+
+        // Аккордеон FAQ
+        function toggleFaq(index) {
+            const answers = document.querySelectorAll('.faq-answer');
+            const spans = document.querySelectorAll('.faq-question span');
+            const isVisible = answers[index].style.display === 'block';
+            
+            // Сначала закроем все
+            answers.forEach(a => a.style.display = 'none');
+            spans.forEach(s => s.innerText = '▼');
+            
+            // Откроем нужный
+            if (!isVisible) {
+                answers[index].style.display = 'block';
+                spans[index].innerText = '▲';
+            }
+        }
+    </script>
+</body>
+</html>
